@@ -52,7 +52,9 @@ if (not blnResult) and (GetLastError = ERROR_NO_TOKEN) then
 
 if blnResult then
   begin
+{$WARNINGS OFF}
   GetMem( ptgGroups, 1024);
+{$WARNINGS ON}
   try
     blnResult := GetTokenInformation( hAccessToken, TokenGroups,
                                       ptgGroups, 1024,
@@ -78,7 +80,9 @@ if blnResult then
       end
 
   finally
+{$WARNINGS OFF}
     FreeMem( ptgGroups)
+{$WARNINGS ON}
     end
   end
 end;

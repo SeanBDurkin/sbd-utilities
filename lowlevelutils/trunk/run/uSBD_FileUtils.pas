@@ -248,15 +248,17 @@ FolderNumbers: array [ TSpecialFolder] of DWord = (
 {$IFNDEF COMPILER_9_UP}
 function WStrEnd( Str: PWideChar): PWideChar;
 begin
-  // returns a pointer to the end of a null terminated string
-  Result := Str;
-  While Result^ <> #0 do
-    Inc(Result);
+// returns a pointer to the end of a null terminated string
+result := Str;
+{$WARNINGS OFF}
+while Result^ <> #0 do
+{$WARNINGS ON}
+  Inc( result)
 end;
 
 function WStrLen( Str: PWideChar): Cardinal;
 begin
-  Result := WStrEnd(Str) - Str;
+result := WStrEnd(Str) - Str;
 end;
 {$ENDIF}
 
@@ -322,7 +324,9 @@ try
   end;
 if not Ok then exit;
 SetLength( result, MAX_PATH);
+{$WARNINGS OFF}
 Move( szPath, result[1], MAX_PATH * SizeOf( char));
+{$WARNINGS ON}
 SetLength( result, SBD_StrLen( PChar( result)));
 result := RemoveFinalBackSlash( result)
 end;

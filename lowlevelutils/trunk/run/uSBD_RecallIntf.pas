@@ -132,11 +132,13 @@ implementation
 uses Forms, Syncobjs, ComCtrls, SysUtils;
 { TRecallIntf }
 
+{$WARNINGS OFF}
 function Assign( var Destination; Source: TObject): TObject;
 begin
 TObject( Destination) := Source;
 result := TObject( Destination)
 end;
+{$WARNINGS ON}
 
 function RecallableStringList( var Strings): IRecallIntf;
 begin

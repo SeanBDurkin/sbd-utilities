@@ -30,7 +30,10 @@ package LowLevelUtils;
 requires
   rtl,
   vcljpg,
-  vcl;
+  vcl,
+  vcljpg
+  {$IFDEF SmartInspect}, SmartInspectD7 {$ENDIF}
+   ;
 
 contains
   uSBD_Visitor in '..\..\run\uSBD_Visitor.pas',
@@ -44,6 +47,14 @@ contains
   uSBD_ObjCache in '..\..\run\uSBD_ObjCache.pas',
   uSBD_PictureUtils in '..\..\run\uSBD_PictureUtils.pas',
   uSBD_Resources in '..\..\run\uSBD_Resources.pas',
-  uSBD_WindowsSecurity in '..\..\run\uSBD_WindowsSecurity.pas';
+  uSBD_WindowsSecurity in '..\..\run\uSBD_WindowsSecurity.pas',
+  uSBD_OS_Version in '..\..\run\uSBD_OS_Version.pas';
+
+// If the Delphi IDE reconstructs the "requires" clause, ensure,
+//  manual insertion that it includes the lines ...
+//     vcljpg
+//     {$IFDEF SmartInspect}, SmartInspectD2007 {$ENDIF}
+//      ;
+// Undefined it if you do not have the SmartInspect product installed.
 
 end.

@@ -521,6 +521,7 @@ begin
 end;
 {$ENDIF}
 
+{$WARNINGS OFF}
 function Extract_CDS_Version( const Info: TOSVersionInfoExA): ansistring;
 var
   L, j: integer;
@@ -547,6 +548,7 @@ result := AnsiTrim( result)
 result := Trim( result)
 {$ENDIF}
 end;
+{$WARNINGS ON}
 
 {$IFDEF UNICODE}
 function TrueAnsiPos(const Substr, S: ansistring): Integer;
@@ -689,7 +691,7 @@ for j := Low( Architectures) to High( Architectures) do
 end;
 
 
-
+{$WARNINGS OFF}
 function isRunningVMware: boolean;
 // This from http://www.delphi3000.com/articles/article_4135.asp
 // It appears that the author is Thomas Stutz.
@@ -709,9 +711,11 @@ end;
 except
   result := False
 end end;
+{$WARNINGS ON}
 
 
 
+{$WARNINGS OFF}
 function IsRunningVirtualPC: boolean;
 // This from http://ruminatedrumblings.blogspot.com/2008/04/detecting-virtual-pc.html
 // He attributes credit to Dennis Pasamore.
@@ -758,6 +762,7 @@ asm
 
 @ret1:
 end;
+{$WARNINGS ON}
 
 
 

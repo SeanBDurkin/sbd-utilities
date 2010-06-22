@@ -60,7 +60,9 @@ type
         // result > 0  ==> This is superior to Ref.
         // result = 0  ==> This is equal to Ref.
         // result < 0  ==> This is inferior to Ref.
+{$WARNINGS OFF}
       function ToString( DisplayLevel: TVersionDisplayLevel): string;
+{$WARNINGS ON}
 
       property hasVersion: boolean  read FhasVersion;
 
@@ -187,25 +189,29 @@ var
    IDsLen: UINT;
    j: integer;
    s: string;
-   sValue: string;
 
+{$WARNINGS OFF}
    function hasFlag( Flag: DWord): boolean;
    begin
    result := (VerValue^.dwFileFlagsMask and Flag) = Flag
    end;
+{$WARNINGS ON}
 
 begin
 CreateSpecificUnversioned;
 FFN := FN;
 VerInfoSize := GetFileVersionInfoSize( PChar( FFN), Dummy);
 if VerInfoSize = 0 then exit;
+{$WARNINGS OFF}
 GetMem( VerInfo, VerInfoSize);
+{$WARNINGS ON}
 try
   if GetFileVersionInfo( PChar( FFN), 0, VerInfoSize, VerInfo) and
      VerQueryValue( VerInfo, '\', pointer( VerValue), VerValueSize ) and
      (VerValueSize >= SizeOf( TVSFixedFileInfo)) then
       begin
       FhasVersion := True;
+{$WARNINGS OFF}
       with VerValue^ do
         begin
         FMajor   := LongRec( dwFileVersionMS).Hi;
@@ -216,13 +222,16 @@ try
         FisPreRel  := hasFlag( VS_FF_PRERELEASE);
         FisPrivate := hasFlag( VS_FF_PRIVATEBUILD);
         FisSpecial := hasFlag( VS_FF_SPECIALBUILD)
+{$WARNINGS ON}
         end;
       if VerQueryValue( VerInfo, '\VarFileInfo\Translation', Pointer( IDs), IDsLen) then
         begin
         Worker := IDs;
         for j := 0 to (IDsLen div SizeOf( TTranslationPair)) - 1 do
           begin
+{$WARNINGS OFF}
           s := Format('%.4x%.4x', [Worker^.Lang, Worker^.CharSet]);
+{$WARNINGS ON}
           FTrans.Add( s);
           Inc( Worker)
           end
@@ -241,7 +250,9 @@ try
           end
       end
 finally
+{$WARNINGS OFF}
   FreeMem( VerInfo, VerInfoSize)
+{$WARNINGS ON}
   end
 end;
 
@@ -307,7 +318,9 @@ if VerQueryValue( VerInfo, PChar( s), pointer( VerData), VerDataSize ) and
       if VerDataSize > 0 then
         begin
         SetLength( result, VerDataSize);
+{$WARNINGS OFF}
         Move( VerData^, result[1], VerDataSize * SizeOf( Char))
+{$WARNINGS ON}
         end
       end
 end;
@@ -326,6 +339,7 @@ if (not FhasVersion) or (FFN = '') or (StrName = '') and
    (TransIndex < 0) or (TransIndex >= FTrans.Count) then exit;
 VerInfoSize := GetFileVersionInfoSize( PChar( FFN), Dummy);
 if VerInfoSize = 0 then exit;
+{$WARNINGS OFF}
 GetMem( VerInfo, VerInfoSize);
 try
   if GetFileVersionInfo( PChar( FFN), 0, VerInfoSize, VerInfo) then
@@ -333,6 +347,7 @@ try
 finally
   FreeMem( VerInfo, VerInfoSize)
   end
+{$WARNINGS ON}
 end;
 
 

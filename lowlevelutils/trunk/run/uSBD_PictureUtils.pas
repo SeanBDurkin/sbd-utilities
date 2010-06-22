@@ -92,8 +92,6 @@ end;
 
 
 procedure LoadGraphicFromFile  ( var Pic: TGraphic; const FileName: string);
-var
-  Stream: TStream;
 begin
 if FileName = '' then
     ClearGraphic( Pic)
@@ -153,8 +151,10 @@ var
 begin
 Source.ReadBuffer( L, 1);
 SetLength( result, L);
+{$WARNINGS OFF}
 if L > 0 then
   Source.ReadBuffer( result[1], L * SizeOf( Char))
+{$WARNINGS ON}
 end;
 
 
@@ -255,10 +255,12 @@ if assigned( Graphic) then
   else
     CName := '';
 L := Length( CName);
-if L > 255 then
-  L := 255;
+//if L > 255 then
+//  L := 255;
 Destin.WriteBuffer( L, 1);
+{$WARNINGS OFF}
 Destin.WriteBuffer( CName[1], L * SizeOf( Char))
+{$WARNINGS ON}
 end;
 
 

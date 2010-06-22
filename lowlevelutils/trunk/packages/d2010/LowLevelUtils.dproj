@@ -145,6 +145,7 @@
 			<DCCReference Include="..\..\run\uSBD_PictureUtils.pas"/>
 			<DCCReference Include="..\..\run\uSBD_Resources.pas"/>
 			<DCCReference Include="..\..\run\uSBD_WindowsSecurity.pas"/>
+			<DCCReference Include="..\..\run\uSBD_OS_Version.pas"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
