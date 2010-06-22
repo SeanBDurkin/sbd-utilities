@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <PersonalityInfo>
+    <Option>
+      <Option Name="Personality">Default.Personality</Option>
+      <Option Name="ProjectType"></Option>
+      <Option Name="Version">1.0</Option>
+      <Option Name="GUID">{9F01269E-6E02-4125-B077-5C66CED5BED7}</Option>
+    </Option>
+  </PersonalityInfo>
+  <Default.Personality>
+    
+    
+    
+    
+    <Projects>
+      <Projects Name="StringReplacer.exe">string replacer\StringReplacer.bdsproj</Projects>
+      <Projects Name="CommandConsolePervert.exe">Command Console Pervert\CommandConsolePervert.bdsproj</Projects>
+      <Projects Name="XmlRegistry.dll">xml registry\XmlRegistry.bdsproj</Projects>
+      <Projects Name="TestXmlRegistry.exe">xml registry\TestXmlRegistry.bdsproj</Projects>
+      <Projects Name="Targets">StringReplacer.exe CommandConsolePervert.exe XmlRegistry.dll TestXmlRegistry.exe</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ProjectSupport>
+  <SupportedProjects>
+    <ProjectName>StringReplacer</ProjectName>
+    <ProjectName>XmlRegistry</ProjectName>
+    <ProjectName>TestXmlRegistry</ProjectName>
+    <ProjectName>CommandConsolePervert</ProjectName>
+  </SupportedProjects>
+</ProjectSupport>

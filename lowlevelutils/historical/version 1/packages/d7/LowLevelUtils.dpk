@@ -1,0 +1,52 @@
+package LowLevelUtils;
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Low level utility library'}
+{$LIBSUFFIX '_D7'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  vcljpg
+  ,TntUnicodeVcl_R70;
+
+contains
+  uSBD_Visitor in '..\..\run\uSBD_Visitor.pas',
+  uSBD_IntegerList in '..\..\run\uSBD_IntegerList.pas',
+  uSBD_Vers in '..\..\run\uSBD_Vers.pas',
+  uSBD_RecallIntf in '..\..\run\uSBD_RecallIntf.pas',
+  uSBD_PictureUtils in '..\..\run\uSBD_PictureUtils.pas',
+  uSBD_FileUtils in '..\..\run\uSBD_FileUtils.pas',
+  uSBD_FundamentTypeSupport in '..\..\run\uSBD_FundamentTypeSupport.pas',
+  uSBD_ObjCache in '..\..\run\uSBD_ObjCache.pas',
+  uSBD_VisitorUtils in '..\..\run\uSBD_VisitorUtils.pas',
+  uSBD_FlexiInterfaced in '..\..\run\uSBD_FlexiInterfaced.pas',
+  uSBD_IntfRegistry in '..\..\run\uSBD_IntfRegistry.pas',
+  uSBD_SortStrings in '..\..\run\uSBD_SortStrings.pas',
+  uSBD_Resources in '..\..\run\uSBD_Resources.pas',
+  uSBD_OSVersion in '..\..\run\uSBD_OSVersion.pas';
+
+end.
+

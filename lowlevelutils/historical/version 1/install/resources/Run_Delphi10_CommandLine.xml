@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ccp>
+ <Intro>This console window will allow you
+to compile the SBD Low Level Utilities
+and watch the compiler output for errors
+or a successful compilation.
+
+Press the "Proceed" button below. The
+Delphi 2006 compiler will be launched.
+Inspect the compiler output. When it
+is finished, press the finish button.
+If there are any errors, you should have
+enough information to manually fix the
+problem.</Intro>
+
+</delphi root="BDS\4.0">
+<command line="""$(DELPHI)\bin\dcc32.exe"" -B LowLevelUtils.dpk"/>
+
+</ccp>
+
