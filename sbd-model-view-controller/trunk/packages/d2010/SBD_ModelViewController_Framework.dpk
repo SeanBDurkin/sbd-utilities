@@ -1,0 +1,57 @@
+package SBD_ModelViewController_Framework;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'SBD Model View Controller Framework'}
+{$LIBSUFFIX '_d2010'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  vclimg,
+  dbrtl,
+  LowLevelUtils
+  {$IFDEF SmartInspect}, SmartInspectD2010 {$ENDIF}
+  ;
+
+contains
+  uSBD_SystemOptions_Reg in '..\..\run\uSBD_SystemOptions_Reg.pas',
+  uSBD_AppComponents in '..\..\run\uSBD_AppComponents.pas',
+  uSBD_PersistenceStrata_Framework in '..\..\run\uSBD_PersistenceStrata_Framework.pas',
+  uSBD_ModelStrata_Framework in '..\..\run\uSBD_ModelStrata_Framework.pas',
+  uSBD_PresentationStrata_Framework in '..\..\run\uSBD_PresentationStrata_Framework.pas',
+  uSBD_PresentationStrata_Skins in '..\..\run\uSBD_PresentationStrata_Skins.pas',
+  uSBD_MVC_App in '..\..\run\uSBD_MVC_App.pas';
+
+// If the Delphi IDE reconstructs the "requires" clause, ensure,
+//  manual insertion that it includes the lines ...
+//     LowLevelUtils
+//     {$IFDEF SmartInspect}, SmartInspectD2010 {$ENDIF}
+//     ;
+// Note that the "SmartInspect" conditional is normally defined for the
+//  Debug build configuration, but not for the Release build configuration.
+//  Undefined it if you do not have the SmartInspect product installed.
+
+end.

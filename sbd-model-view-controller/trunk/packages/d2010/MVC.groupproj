@@ -1,0 +1,60 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{0A5D53E4-C469-4758-8DDA-1966DE2FFB84}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="SBD_ModelViewController_Framework.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="SBD_Desktop_MVC.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="SBD_MVC_LockBox3_Integration.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="SBD_ModelViewController_Framework">
+			<MSBuild Projects="SBD_ModelViewController_Framework.dproj"/>
+		</Target>
+		<Target Name="SBD_ModelViewController_Framework:Clean">
+			<MSBuild Targets="Clean" Projects="SBD_ModelViewController_Framework.dproj"/>
+		</Target>
+		<Target Name="SBD_ModelViewController_Framework:Make">
+			<MSBuild Targets="Make" Projects="SBD_ModelViewController_Framework.dproj"/>
+		</Target>
+		<Target Name="SBD_Desktop_MVC">
+			<MSBuild Projects="SBD_Desktop_MVC.dproj"/>
+		</Target>
+		<Target Name="SBD_Desktop_MVC:Clean">
+			<MSBuild Targets="Clean" Projects="SBD_Desktop_MVC.dproj"/>
+		</Target>
+		<Target Name="SBD_Desktop_MVC:Make">
+			<MSBuild Targets="Make" Projects="SBD_Desktop_MVC.dproj"/>
+		</Target>
+		<Target Name="SBD_MVC_LockBox3_Integration">
+			<MSBuild Projects="SBD_MVC_LockBox3_Integration.dproj"/>
+		</Target>
+		<Target Name="SBD_MVC_LockBox3_Integration:Clean">
+			<MSBuild Targets="Clean" Projects="SBD_MVC_LockBox3_Integration.dproj"/>
+		</Target>
+		<Target Name="SBD_MVC_LockBox3_Integration:Make">
+			<MSBuild Targets="Make" Projects="SBD_MVC_LockBox3_Integration.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="SBD_ModelViewController_Framework;SBD_Desktop_MVC;SBD_MVC_LockBox3_Integration"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="SBD_ModelViewController_Framework:Clean;SBD_Desktop_MVC:Clean;SBD_MVC_LockBox3_Integration:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="SBD_ModelViewController_Framework:Make;SBD_Desktop_MVC:Make;SBD_MVC_LockBox3_Integration:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>
