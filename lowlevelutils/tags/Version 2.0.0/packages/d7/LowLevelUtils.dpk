@@ -1,0 +1,49 @@
+package LowLevelUtils;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Low level utility library'}
+{$LIBSUFFIX '_D7'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcljpg,
+  vcl;
+
+contains
+  uSBD_Visitor in '..\..\run\uSBD_Visitor.pas',
+  uSBD_IntegerList in '..\..\run\uSBD_IntegerList.pas',
+  uSBD_Vers in '..\..\run\uSBD_Vers.pas',
+  uSBD_RecallIntf in '..\..\run\uSBD_RecallIntf.pas',
+  uSBD_FileUtils in '..\..\run\uSBD_FileUtils.pas',
+  uSBD_FundamentTypeSupport in '..\..\run\uSBD_FundamentTypeSupport.pas',
+  uSBD_VisitorUtils in '..\..\run\uSBD_VisitorUtils.pas',
+  uSBD_SortStrings in '..\..\run\uSBD_SortStrings.pas',
+  uSBD_ObjCache in '..\..\run\uSBD_ObjCache.pas',
+  uSBD_PictureUtils in '..\..\run\uSBD_PictureUtils.pas',
+  uSBD_Resources in '..\..\run\uSBD_Resources.pas',
+  uSBD_WindowsSecurity in '..\..\run\uSBD_WindowsSecurity.pas';
+
+end.
