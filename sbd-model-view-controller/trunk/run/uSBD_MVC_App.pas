@@ -708,14 +708,16 @@ procedure TBinder.ShutDown(
 //  the OriginatingForm parameter.
 // UPSHOT: A main-view will shut-down the application.
 //         A secondary view will just hide itself.
+var
+  doShutDown: boolean;
 begin
 if FisShuttingDown then exit;
 if ForceShutDown then
-    FisShuttingDown := True
+    doShutDown := True
   else
-    FisShuttingDown := CanShutDown and ((not assigned( OriginatingForm)) or
+    doShutDown := CanShutDown and ((not assigned( OriginatingForm)) or
                                         (OriginatingForm = FCtrl.ControllerMainForm));
-if FisShuttingDown then
+if doShutDown then
   begin
   if assigned( OriginatingForm) and
     (OriginatingForm = FCtrl.ControllerMainForm) then
@@ -728,9 +730,14 @@ end;
 
 procedure TBinder.Subscribe( const Observer: IView);
 begin
+Observer.SetAppInfo( FAppInfo);
+{$IFDEF SmartInspect}
+if FdoUseSI then
+  Observer.SetSmartInspect( FSi, FSess);
+{$EndIf}
 FViewSubsystems.Add( Observer);
 Observer.SetModelStrata( FModel);
-Observer.SetSubSystemViewManager( self)
+Observer.SetSubSystemViewManager( self);
 end;
 
 
@@ -978,7 +985,7 @@ if not hasClosedMainForm then
 FCtrl.ShutDown;
 
 for j := FViewSubsystems.Count - 1 downto 0 do
-  if Supports( FViewSubsystems, IView, View) then
+  if Supports( FViewSubsystems[j], IView, View) then
     View.ShutDown;
 View := nil;
 for j := FViewInfos.Count - 1 downto 0 do
@@ -997,7 +1004,7 @@ FCtrl.SetModelStrata( nil);
 FCtrl.SetControlServices( nil);
 
 for j := FViewSubsystems.Count - 1 downto 0 do
-  if Supports( FViewSubsystems, IView, View) then
+  if Supports( FViewSubsystems[j], IView, View) then
     begin
     View.SetModelStrata( nil);
     View.SetSubSystemViewManager( nil)
@@ -1115,13 +1122,13 @@ if Ascending then
     for j := 0 to FViewInfos.Count - 1 do
       DoIt( FViewInfos[j]);
     for j := 0 to FViewSubsystems.Count - 1 do
-      if Supports( FViewSubsystems, IView, View) then
+      if Supports( FViewSubsystems[j], IView, View) then
         Method( View, Datum)
     end
   else
     begin
     for j := FViewSubsystems.Count - 1 downto 0 do
-      if Supports( FViewSubsystems, IView, View) then
+      if Supports( FViewSubsystems[j], IView, View) then
         Method( View, Datum);
     for j := FViewInfos.Count - 1 downto 0 do
       DoIt( FViewInfos[j])
