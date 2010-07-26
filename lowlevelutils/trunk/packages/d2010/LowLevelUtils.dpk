@@ -30,9 +30,7 @@ requires
   rtl,
   vcl,
   dbrtl,
-  vclimg
-  {$IFDEF SmartInspect}, SmartInspectD2010 {$ENDIF}
-   ;
+  vclimg;
 
 contains
   uSBD_Visitor in '..\..\run\uSBD_Visitor.pas',
@@ -47,7 +45,8 @@ contains
   uSBD_PictureUtils in '..\..\run\uSBD_PictureUtils.pas',
   uSBD_Resources in '..\..\run\uSBD_Resources.pas',
   uSBD_WindowsSecurity in '..\..\run\uSBD_WindowsSecurity.pas',
-  uSBD_OS_Version in '..\..\run\uSBD_OS_Version.pas';
+  uSBD_OS_Version in '..\..\run\uSBD_OS_Version.pas',
+  uSBD_Busy in '..\..\run\uSBD_Busy.pas';
 
 // If the Delphi IDE reconstructs the "requires" clause, ensure,
 //  manual insertion that it includes the lines ...
