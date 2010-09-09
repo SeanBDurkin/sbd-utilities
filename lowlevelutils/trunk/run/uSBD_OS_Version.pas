@@ -357,6 +357,8 @@ OS_LocalityBasedVariety_DisplayNames: array[ TOS_LocalityBasedVariety] of string
 
 
 function ThisOS: TOS_Datum;
+function CompiledWithPackages: boolean;
+function RunningUnderAgeasOfIDE: boolean;
 
 implementation
 
@@ -367,7 +369,7 @@ implementation
 
 
 
-uses SysUtils, Windows, Math, TlHelp32, Registry;
+uses SysUtils, Windows, Math, TlHelp32, Registry, StrUtils;
 
 const
 // This table is used for a preliminary (course grain) determination of the
@@ -1394,6 +1396,52 @@ begin { DSiGetTrueWindowsVersion }
     else // we have no idea
       Result := osUnrecognised
   end; { DSiGetTrueWindowsVersion }
+
+
+function CompiledWithPackages: boolean;
+// Author: Sean B. Durkin  9-Sep-2010.
+// Returns True if and only if this application
+//  has been compiled with packages turned ON.
+var
+   W: PLibModule;
+   V, Code: integer;
+   s: string;
+begin
+// Search for linkage to a module named something like ...
+//   'C:\WINDOWS\system32\rtl140.bpl' .
+result := False;
+W := System.LibModuleList;
+while assigned( W) do
+   begin
+   s := SysUtils.GetModuleName( W^.ResInstance);
+   // like 'C:\WINDOWS\system32\rtl140.bpl'
+   s := ReverseString( LowerCase( ExtractFileName( s)));
+   if Pos( 'lpb.', s) = 1 then
+       begin
+       Delete( s, 1, 4);
+       s := ReverseString( s)
+       end
+     else
+       s := '';
+   if Pos( 'rtl', s) = 1 then
+       Delete( s, 1, 3)
+     else
+       s := '';
+   Val( s, V, Code);
+   result := (s <> '') and (Code = 0);
+   // The exact value of V could also be tested as a function
+   //  of RTLVersion.
+   // For example, if RTLVersion = 21.00, then must be V = 140 .
+   if result then break;
+   W := W^.Next
+   end
+end;
+
+
+function RunningUnderAgeasOfIDE: boolean;
+begin
+result := System.DebugHook <> 0
+end;
 
 
 initialization
