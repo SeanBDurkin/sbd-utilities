@@ -76,8 +76,6 @@ function SBD_StrLen( Str: PChar): Cardinal;
 
 function RemoveFinalBackSlash( const Value: string): string;
 
-function GetLibraryInfo(
-  ModuleHandle: HMODULE; var LibName: string; var FileVersion: string): boolean;
 
 implementation
 
@@ -374,46 +372,5 @@ result := SetDllDirectory_API( nil)
 end;
 
 
-function GetLibraryInfo(
-  ModuleHandle: HMODULE; var LibName: string; var FileVersion: string): boolean;
-var
-  iLibSize, iValueSize: DWord;
-  Buf: ansiString;
-  Ok: boolean;
-  fvip: pointer;
-  MajorV, MinorV, ReleaseV, BuildV: integer;
-begin
-LibName := GetModuleName( ModuleHandle);
-result := LibName <> '';
-if result then
-    iLibSize := GetFileVersionInfoSize( PChar( LibName), iLibSize)
-  else
-    iLibSize := 0;
-Ok := iLibSize > 0;
-if Ok then
-  begin
-  SetLength( Buf, iLibSize);
-  Ok := GetFileVersionInfo( PChar( LibName), 0, iLibSize, PAnsiChar( Buf)) and
-        VerQueryValue( PAnsiChar( Buf), '\', fvip, iValueSize) and
-        (iValueSize >= SizeOf( TVSFixedFileInfo))
-  end;
-if Ok then
-    begin
-    MajorV   := HiWord( TVSFixedFileInfo( fvip^).dwFileVersionMS);
-    MinorV   := LoWord( TVSFixedFileInfo( fvip^).dwFileVersionMS);
-    ReleaseV := HiWord( TVSFixedFileInfo( fvip^).dwFileVersionLS);
-    BuildV   := LoWord( TVSFixedFileInfo( fvip^).dwFileVersionLS)
-    end
-  else
-    begin
-    MajorV   := 0;
-    MinorV   := 0;
-    ReleaseV := 0;
-    BuildV   := 0
-    end;
-FileVersion := Format( '%d.%d.%d.%d', [MajorV, MinorV, ReleaseV, BuildV]);
-if result then
-  LibName := ExtractFileName( LibName)
-end;
 
 end.

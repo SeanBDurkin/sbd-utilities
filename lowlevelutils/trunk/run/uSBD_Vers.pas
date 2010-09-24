@@ -91,6 +91,9 @@ function GetVersionOfModule_ByHandle(
   var LibName: string; var MajorV, MinorV, ReleaseV, BuildV: word;
   var sVersion: string): boolean;
 
+function GetLibraryInfo(
+  ModuleHandle: HMODULE; var LibName: string; var FileVersion: string): boolean;
+
 implementation
 
 
@@ -392,5 +395,16 @@ sVersion := Vers.ToString( vdlBuild);
 LibName  := ExtractFileName( LibName)
 end;
 
+
+
+function GetLibraryInfo(
+  ModuleHandle: HMODULE;
+  var LibName: string; var FileVersion: string): boolean;
+var
+  MajorV, MinorV, ReleaseV, BuildV: word;
+begin
+result := GetVersionOfModule_ByHandle(
+  ModuleHandle, LibName, MajorV, MinorV, ReleaseV, BuildV, FileVersion)
+end;
 
 end.
